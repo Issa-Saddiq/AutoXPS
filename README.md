@@ -1,69 +1,57 @@
 # genXPS
 
-[![Release](https://img.shields.io/github/v/release/saddiqi157/genXPS)](https://img.shields.io/github/v/release/saddiqi157/genXPS)
-[![Build status](https://img.shields.io/github/actions/workflow/status/saddiqi157/genXPS/main.yml?branch=main)](https://github.com/saddiqi157/genXPS/actions/workflows/main.yml?query=branch%3Amain)
-[![codecov](https://codecov.io/gh/saddiqi157/genXPS/branch/main/graph/badge.svg)](https://codecov.io/gh/saddiqi157/genXPS)
-[![Commit activity](https://img.shields.io/github/commit-activity/m/saddiqi157/genXPS)](https://img.shields.io/github/commit-activity/m/saddiqi157/genXPS)
-[![License](https://img.shields.io/github/license/saddiqi157/genXPS)](https://img.shields.io/github/license/saddiqi157/genXPS)
+## Overview
 
-This is a template repository for Python projects that use uv for their dependency management.
+This repository contains scripts and utilities for processing XPS spectra, training classifiers, and generating predicted spectra. The main functionality is provided in the `notebooks_clean` folder:
 
-- **Github repository**: <https://github.com/saddiqi157/genXPS/>
-- **Documentation** <https://saddiqi157.github.io/genXPS/>
+1. **Data Processing**
+   - `xps-datagen.ipynb`: Scripts for preparing experimental and synthetic XPS data for training and evaluation.
 
-## Getting started with your project
+2. **Classifier Training**
+   - `classifier_training.ipynb`: Trains three types of models — a conventional MLP, a CNN, and a novel Spatial Transformer Network (STN) — for multi-label functional group classification.
 
-### 1. Create a New Repository
+3. **Classifier Testing**
+   - `classifier_testing.ipynb`: Evaluates trained classifiers on held-out test data.
 
-First, create a repository on GitHub with the same name as this project, and then run the following commands:
+4. **Generative Model Training**
+   - `CVAE_training.ipynb`: Trains a conditional Variational Autoencoder (CVAE) to generate predicted XPS spectra from input labels.
 
+5. **Auxiliary Scripts**
+   - `explainer.ipynb`: Investigates the classifier’s prediction mechanism using gradient-based methods.  
+   - `peak_annotator.ipynb`: Implements automatic peak assignment of input spectra. The workflow uses the classifier to identify present functional groups and the generative model to generate counterfactual spectra, allowing identification of which peaks correspond to which functional groups.
+
+**Note:** Legacy scripts (not refactored) are included in `notebooks_legacy` for reference.
+
+
+## Installation
+
+This project uses [UV](https://github.com/fpgmaas/uv) to manage the Python environment and dependencies.  
+
+### 1. Install UV
+If you don't have UV installed, you can install it with pip:
 ```bash
-git init -b main
-git add .
-git commit -m "init commit"
-git remote add origin git@github.com:saddiqi157/genXPS.git
-git push -u origin main
+
+pip install uv
 ```
 
-### 2. Set Up Your Development Environment
+### 2. Set up the virtual environment
 
-Then, install the environment and the pre-commit hooks with
-
-```bash
-make install
-```
-
-This will also generate your `uv.lock` file
-
-### 3. Run the pre-commit hooks
-
-Initially, the CI/CD pipeline might be failing due to formatting issues. To resolve those run:
+To create a virtual environment with all required dependencies, run:
 
 ```bash
-uv run pre-commit run -a
+uv install
 ```
 
-### 4. Commit the changes
+3. Activate the environment
 
-Lastly, commit the changes made by the two steps above to your repository.
-
-```bash
-git add .
-git commit -m 'Fix formatting issues'
-git push origin main
+```bash 
+source .venv/bin/activate
 ```
 
-You are now ready to start development on your project!
-The CI/CD pipeline will be triggered when you open a pull request, merge to main, or when you create a new release.
+## Data disclaimer 
 
-To finalize the set-up for publishing to PyPI, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/publishing/#set-up-for-pypi).
-For activating the automatic documentation with MkDocs, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/mkdocs/#enabling-the-documentation-on-github).
-To enable the code coverage reports, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/codecov/).
+Trained models are not uploaded as they exceed githubs file size limit, but are available upon reasonable request.
 
-## Releasing a new version
+Input experimental polymer XPS data used for this work is excluded from the repo as it is licensed, but is available from https://surfacespectra.com/xps/
 
 
-
----
-
-Repository initiated with [fpgmaas/cookiecutter-uv](https://github.com/fpgmaas/cookiecutter-uv).
