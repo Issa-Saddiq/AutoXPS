@@ -2,6 +2,8 @@
 
 ## Overview
 
+**If you are looking to directly test or adapt the novel Spatial Transformer Network (STN) approach introduced in this paper, you can find the core PyTorch model definitions here:** [`notebooks_clean/src/models.py`](notebooks_clean/src/models.py)
+
 This repository contains scripts and utilities for processing XPS spectra, training classifiers, and generating predicted spectra. The main functionality is provided in the `notebooks_clean` folder:
 
 1. **Data Processing**
@@ -53,5 +55,6 @@ source .venv/bin/activate
 Trained models are not uploaded as they exceed githubs file size limit, but are available upon reasonable request.
 
 Input experimental polymer XPS data used for this work is excluded from the repo as it is licensed, but is available from https://surfacespectra.com/xps/
+
 
 
